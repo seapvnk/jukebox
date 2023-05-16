@@ -42,17 +42,14 @@ func PlaceGetOneController(c *gin.Context) {
 	}
 
 	places := GetPlaceService(placeDto.ID)
+	message := "place found"
 
 	if len(places) == 0 {
-		c.JSON(http.StatusNotFound, gin.H{
-			"places": places,
-			"message": "place not found",
-		})
-		return
+		message = "place not found"
 	}
 
 	c.JSON(http.StatusOK, gin.H{
         "places": places,
-        "message": "place found",
+        "message": message,
     })
 }
